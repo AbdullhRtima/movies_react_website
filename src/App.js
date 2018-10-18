@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import MovieRow from './MovieRow.js'
+import Footer from './footer.js'
 import $ from 'jquery'
 
 class App extends Component {
@@ -84,15 +85,16 @@ class App extends Component {
         <input style={{
           fontSize: 24,
           display: 'block',
-          width: "99%",
+          width: "98%",
           paddingTop: 8,
           paddingBottom: 8,
           paddingLeft: 16
         }} onChange={this.searchChangeHandler.bind(this)} placeholder="search here like eg : marvel "/>
 
         {this.state.rows}
-
+       <Footer/>
       </div>
+      
     );
   }
 }

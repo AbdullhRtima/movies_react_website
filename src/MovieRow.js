@@ -23,6 +23,7 @@ class MovieRow extends React.Component {
       </tr>
     </tbody>
   </table>
+  
   }
 }
 
