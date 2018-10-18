@@ -9,8 +9,8 @@ class MovieRow extends React.Component {
   }
 
   render() {
-    return <table key={this.props.movie.id}>
-    <tbody class="container">
+    return <table class="container" key={this.props.movie.id}>
+    <tbody >
       <tr>
         <td>
           <img  class="z-depth-5" alt="poster" width="180" src={this.props.movie.poster_src}/>
