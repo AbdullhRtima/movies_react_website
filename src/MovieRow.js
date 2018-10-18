@@ -10,15 +10,15 @@ class MovieRow extends React.Component {
 
   render() {
     return <table key={this.props.movie.id}>
-    <tbody>
+    <tbody class="container">
       <tr>
         <td>
-          <img alt="poster" width="120" src={this.props.movie.poster_src}/>
+          <img  class="z-depth-5" alt="poster" width="180" src={this.props.movie.poster_src}/>
         </td>
         <td>
           <h3>{this.props.movie.title}</h3>
-          <p>{this.props.movie.overview}</p>
-          <input type="button" onClick={this.viewMovie.bind(this)} value="View"/>
+          <p >{this.props.movie.overview}</p>
+          <input class="waves-effect waves-light btn" type="button" onClick={this.viewMovie.bind(this)} value="View"/>
         </td>
       </tr>
     </tbody>

@@ -1,43 +1,45 @@
 import React, { Component } from 'react';
 import './App.css';
-import $ from 'jquery';
-import MovieRow from './MovieRow';
+import MovieRow from './MovieRow.js'
+import $ from 'jquery'
 
 class App extends Component {
-  constructor(props){
-    super (props)
-    this.state ={}
-    // console.log('we are here ')
-    // const movies =[
-    //   {id :0, imgpath : '/img/m1.jpg' , title: " Avenger : Infinity war " ,overview : " smaple text "},
-    //   {id :0 ,imgpath : '/img/m1.jpg' , title: " Avenger : Infinity war " ,overview : " smaple text "}
-    //   ]
-    // this.state ={
-    //   rows :[
-    //     <p key ="1">this is row 1</p>,
-    //     <p key ="2">this is row 2</p>,
-    //     <p key ="3">this is row 3</p>
-    //   ]
-    // }
-    
-    // var movieRows =[] 
-    // movies.forEach((movie)=>{
+
+  constructor(props) {
+    super(props)
+    this.state = {}
+    // console.log("This is my initializer")
+
+    // const movies = [
+    //   {id: 0, poster_src: "https://image.tmdb.org/t/p/w185/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+    //    title: "Avengers: Infinity War", overview: "As the Avengers and their allies have continued to protect the world from threats too large"},
+    //   {id: 1, poster_src: "https://image.tmdb.org/t/p/w185/cezWGskPY5x7GaglTTRN4Fugfb8.jpg",
+    //    title: "	The Avengers", overview: "This is my second overview"},
+    // ]
+
+    // var movieRows = []
+    // movies.forEach((movie) => {
     //   console.log(movie.title)
-    //   const movieRow = <MovieRow movie ={movie}/>
+    //   const movieRow = <MovieRow movie={movie} />
     //   movieRows.push(movieRow)
     // })
-    // this.state ={ rows : movieRows}
-    this.preformSerch("marvel")
+
+    // this.state = {rows: movieRows}
+
+    this.performSearch("marvel")
   }
-    preformSerch(searchTerm){
-      console.log("i am here baby ");
-      const urlString = "https://api.themoviedb.org/3/search/movie?api_key=9865299846e3818ea346b28d014ec7c9&query=" + searchTerm 
-      $.ajax({
-      url :urlString ,
-      success : (searchResults) => {
-        console.log("success data is here ")
-        console.log(searchResults);
-        const results = searchResults.results 
+
+  performSearch(searchTerm) {
+    console.log("Perform search using moviedb")
+    const urlString =  "https://api.themoviedb.org/3/search/movie?api_key=9865299846e3818ea346b28d014ec7c9&query="+searchTerm 
+    $.ajax({
+      url: urlString,
+      success: (searchResults) => {
+        console.log("Fetched data successfully")
+         console.log(searchResults)
+        const results = searchResults.results
+        // console.log(results[0])
+
         var movieRows = []
 
         results.forEach((movie) => {
@@ -49,12 +51,12 @@ class App extends Component {
 
         this.setState({rows: movieRows})
       },
-      error : (xhr ,state ,err ) => {
-        console.error(" error so sade for u baby ")
+      error: (xhr, status, err) => {
+        console.error("Failed to fetch data")
       }
-      })
-    
+    })
   }
+
   searchChangeHandler(event) {
     console.log(event.target.value)
     const boundObject = this
@@ -64,19 +66,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
+        
         <table className ="Navbar">
-          <tbody>
-            <tr>
-              <td>
-              <img alt="image icon " width="50" src="img/imgDB.png"/>
-              </td>
-              <td width="8" />
-              <td>
-                <h1>Movies Home</h1>
-              </td>
+           <tbody>
+             <tr>
+               <td>
+               <img alt="poster" width="60" src="img/imgDB.png"/>
+               </td>
+               <td />
+               <td>
+                 <h2>Movies Home</h2>
+               </td>
             </tr>
-          </tbody>
+           </tbody>
         </table>
         <input style={{
           fontSize: 24,
@@ -86,10 +89,13 @@ class App extends Component {
           paddingBottom: 8,
           paddingLeft: 16
         }} onChange={this.searchChangeHandler.bind(this)} placeholder="Enter search term"/>
+
         {this.state.rows}
+
       </div>
     );
   }
 }
 
 export default App;
+
